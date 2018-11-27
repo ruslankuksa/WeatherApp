@@ -61,8 +61,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             response in
             if response.result.isSuccess {
+                //print(response)
                 let weatherJSON: JSON = JSON(response.result.value!)
-                self.updateWeatherData(json: weatherJSON)
+                //self.updateWeatherData(json: weatherJSON)
             }
             else {
                 print(response.result.error!)
@@ -129,7 +130,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
             let latitude = String(currentLocation.coordinate.latitude)
             let longitude = String(currentLocation.coordinate.longitude)
             
-            let weatherParams: [String:String] = ["lat": latitude, "lon": longitude, "appid": API_KEY]
+            let weatherParams: [String:String] = ["key": API_KEY, "lat": latitude, "lon": longitude, "format": "json"]
             getWeatherData(url: API_URL, parameters: weatherParams)
             
             //let forecastParams: [String:String] = ["lat": latitude, "lon": longitude, "cnt": "\(3)", "appid": API_KEY]
