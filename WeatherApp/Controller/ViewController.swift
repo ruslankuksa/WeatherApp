@@ -130,7 +130,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
             let latitude = String(currentLocation.coordinate.latitude)
             let longitude = String(currentLocation.coordinate.longitude)
             
-            let weatherParams: [String:String] = ["key": API_KEY, "lat": latitude, "lon": longitude, "format": "json"]
+            let weatherParams: [String:String] = ["key": API_KEY, "lat": latitude, "lon": longitude, "format": "json", "num_of_days": "3"]
             getWeatherData(url: API_URL, parameters: weatherParams)
             
             //let forecastParams: [String:String] = ["lat": latitude, "lon": longitude, "cnt": "\(3)", "appid": API_KEY]
