@@ -18,7 +18,7 @@ class CollectionViewCell: UICollectionViewCell {
     func configureCell(forecastWeather: ForecastWeatherData) {
         self.temperatureLabel.text = String(forecastWeather.temp)
         self.dateLabel.text = forecastWeather.date
-        //self.weatherTypeLabel.text = forecastWeather.weatherType
+        self.weatherTypeLabel.text = forecastWeather.weatherType
     }
 
 }

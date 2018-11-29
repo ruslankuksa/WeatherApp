@@ -10,14 +10,14 @@ import Foundation
 
 class WeatherDataModel {
     var temparature: Int = 0
-    var condition: Int = 0
+    var weatherCode: Int = 0
     var weatherType: String = ""
     var city: String = ""
     var date: String = ""
     var weatherIcon: String = ""
     
-    func updateWeatherIcon(condition: Int) -> String {
-        switch condition {
+    func updateWeatherIcon(weatherCode: Int) -> String {
+        switch weatherCode {
         
         case 0...300:
             return "009-storm-1"
@@ -59,15 +59,15 @@ class WeatherDataModel {
     
     //Other functions
     //****************************************************************************//
-    func dateConvertor(date: Double) -> String {
-        let takenDate = Date(timeIntervalSince1970: date)
+    func dateConvertor(date: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let formattedDate = dateFormatter.date(from: date) {
+            dateFormatter.dateFormat = "dd MMM, yyy"
+            return dateFormatter.string(from: formattedDate)
+        }
         
-        let currentDate = dateFormatter.string(from: takenDate)
-        
-        return currentDate
+        return date
         
     }
 }

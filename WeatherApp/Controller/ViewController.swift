@@ -61,9 +61,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             response in
             if response.result.isSuccess {
-                //print(response)
+                print(response)
                 let weatherJSON: JSON = JSON(response.result.value!)
-                //self.updateWeatherData(json: weatherJSON)
+                self.updateWeatherData(json: weatherJSON)
             }
             else {
                 print(response.result.error!)
@@ -94,20 +94,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     //JSON Parsing
     //****************************************************************************//
     func updateWeatherData(json: JSON) {
-        if let temp = json["main"]["temp"].double {
-            weatherDataModel.temparature = Int(temp - 273.15)
-            weatherDataModel.city = json["name"].stringValue
-            weatherDataModel.date = weatherDataModel.dateConvertor(date: json["dt"].double!)
-            weatherDataModel.condition = json["weather"][0]["id"].intValue
-            print(weatherDataModel.condition)
-            weatherDataModel.weatherType = json["weather"][0]["main"].stringValue
-            weatherDataModel.weatherIcon = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
+        
+            weatherDataModel.temparature = json["data"]["current_condition"][0]["temp_C"].intValue
+            weatherDataModel.city = json["data"]["nearest_area"][0]["areaName"][0]["value"].stringValue
+            weatherDataModel.date = weatherDataModel.dateConvertor(date: json["data"]["weather"][0]["date"].stringValue) 
+            weatherDataModel.weatherCode = json["data"]["current_condition"][0]["weatherCode"].intValue
+            print(weatherDataModel.weatherCode)
+            weatherDataModel.weatherType = json["data"]["current_condition"][0]["weatherDesc"][0]["value"].stringValue
+            weatherDataModel.weatherIcon = weatherDataModel.updateWeatherIcon(weatherCode: weatherDataModel.weatherCode)
             
             updateWeatherUI()
-        }
-        else {
-            cityLabel.text = "Weather unvailable"
-        }
+        
+            //cityLabel.text = "Weather unvailable"
     }
     
     
@@ -130,7 +128,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
             let latitude = String(currentLocation.coordinate.latitude)
             let longitude = String(currentLocation.coordinate.longitude)
             
-            let weatherParams: [String:String] = ["key": API_KEY, "lat": latitude, "lon": longitude, "format": "json", "num_of_days": "3"]
+            let weatherParams: [String:String] = ["key": API_KEY, "lat": latitude, "lon": longitude, "format": "json", "num_of_days": "3", "includelocation": "yes"]
             getWeatherData(url: API_URL, parameters: weatherParams)
             
             //let forecastParams: [String:String] = ["lat": latitude, "lon": longitude, "cnt": "\(3)", "appid": API_KEY]
@@ -149,7 +147,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     //*****************************************************************//
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text != "" {
-            let newParameters: [String:String] = ["q": searchBar.text ?? "", "appid": API_KEY]
+            let newParameters: [String:String] = ["key": API_KEY, "q": searchBar.text!, "format": "json", "num_of_days": "3", "includelocation": "yes"]
             getWeatherData(url: API_URL, parameters: newParameters)
         }
         searchBar.endEditing(true)
