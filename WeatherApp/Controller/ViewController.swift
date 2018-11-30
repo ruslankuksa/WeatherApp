@@ -17,7 +17,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     let API_URL: String = "https://api.worldweatheronline.com/premium/v1/weather.ashx"
     
     let locationManager = CLLocationManager()
-    let weatherDataModel = WeatherDataModel()
     
     var forecastArray = [ForecastWeatherData]()
     
@@ -63,7 +62,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
             if response.result.isSuccess {
                 print(response)
                 let weatherJSON: JSON = JSON(response.result.value!)
-                self.updateWeatherData(json: weatherJSON)
+                
+                self.updateWeatherUI(weatherData: WeatherDataModel(json: weatherJSON))
             }
             else {
                 print(response.result.error!)
@@ -91,32 +91,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
 //
 //    }
     
-    //JSON Parsing
-    //****************************************************************************//
-    func updateWeatherData(json: JSON) {
-        
-            weatherDataModel.temparature = json["data"]["current_condition"][0]["temp_C"].intValue
-            weatherDataModel.city = json["data"]["nearest_area"][0]["areaName"][0]["value"].stringValue
-            weatherDataModel.date = weatherDataModel.dateConvertor(date: json["data"]["weather"][0]["date"].stringValue) 
-            weatherDataModel.weatherCode = json["data"]["current_condition"][0]["weatherCode"].intValue
-            print(weatherDataModel.weatherCode)
-            weatherDataModel.weatherType = json["data"]["current_condition"][0]["weatherDesc"][0]["value"].stringValue
-            weatherDataModel.weatherIcon = weatherDataModel.updateWeatherIcon(weatherCode: weatherDataModel.weatherCode)
-            
-            updateWeatherUI()
-        
-            //cityLabel.text = "Weather unvailable"
-    }
-    
-    
     //Update UI
     //****************************************************************************//
-    func updateWeatherUI() {
-        cityLabel.text = weatherDataModel.city
-        dateLabel.text = weatherDataModel.date
-        weatherImage.image = UIImage(named: weatherDataModel.weatherIcon)
-        temperatureLabel.text = String(weatherDataModel.temparature) + "°"
-        weatherTypeLabel.text = weatherDataModel.weatherType
+    func updateWeatherUI(weatherData: WeatherDataModel) {
+        cityLabel.text = weatherData.city
+        dateLabel.text = weatherData.date
+        temperatureLabel.text = String(weatherData.temparature) + "°"
+        weatherTypeLabel.text = weatherData.weatherType
+        weatherImage.image = UIImage(named: weatherData.weatherIcon)
+        
     }
     
     //LocationManager Setup
