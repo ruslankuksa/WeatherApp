@@ -57,7 +57,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     // Get data from url
     //****************************************************************************//
     func getWeatherData(url: String, parameters: [String:String]) {
-        forecastArray.removeAll()
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             response in
             if response.result.isSuccess {
@@ -65,27 +64,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
                 let weatherJSON: JSON = JSON(response.result.value!)
                 
                 self.updateWeatherUI(weatherData: WeatherDataModel(json: weatherJSON))
+                self.updateForecastUI(weatherJSON: weatherJSON)
                 
-
-                for item in weatherJSON["data"]["weather"].arrayValue {
-                        let forecast = ForecastWeatherData(data: item)
-                        self.forecastArray.append(forecast)
-                }
-                
-                self.collectionView.reloadData()
-                self.forecastArray.remove(at: 0)
             }
             else {
                 print(response.result.error!)
                 self.cityLabel.text = "Connection issues"
             }
         }
-    }
-    
-    
-    func getForecastWeatherData(forecastData: Dictionary<String, AnyObject>) {
-        
-
     }
     
     //Update UI
@@ -96,6 +82,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
         temperatureLabel.text = String(weatherData.temparature) + "°"
         weatherTypeLabel.text = weatherData.weatherType
         weatherImage.image = UIImage(named: weatherData.weatherIcon)
+        
+    }
+    
+    func updateForecastUI(weatherJSON: JSON) {
+        forecastArray.removeAll()
+        for item in weatherJSON["data"]["weather"].arrayValue {
+            let forecast = ForecastWeatherData(data: item)
+            self.forecastArray.append(forecast)
+        }
+        
+        self.collectionView.reloadData()
+        self.forecastArray.remove(at: 0)
         
     }
     
@@ -126,7 +124,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     //*****************************************************************//
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text != "" {
-            let newParameters: [String:String] = ["key": API_KEY, "q": searchBar.text!, "format": "json", "num_of_days": "3", "includelocation": "yes"]
+            let newParameters: [String:String] = ["key": API_KEY, "q": searchBar.text!, "format": "json", "num_of_days": "4", "includelocation": "yes"]
             getWeatherData(url: API_URL, parameters: newParameters)
         }
         searchBar.endEditing(true)
@@ -155,7 +153,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     
     
     // CollectionVIew settings for showing daily forecast
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return forecastArray.count

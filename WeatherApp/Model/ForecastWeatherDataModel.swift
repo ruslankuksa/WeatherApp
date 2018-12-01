@@ -18,9 +18,9 @@ class ForecastWeatherData {
     
     init(data: JSON) {
         self.date = dateConvertor(date: data["date"].stringValue)
-        self.temp = data["hourly"][0]["tempC"].intValue
-        self.weatherType = data["hourly"][0]["weatherDesc"][0]["value"].stringValue
-        self.weatherCode = data["hourly"][0]["weatherCode"].intValue
+        self.temp = data["hourly"][4]["tempC"].intValue
+        self.weatherType = data["hourly"][4]["weatherDesc"][0]["value"].stringValue
+        self.weatherCode = data["hourly"][4]["weatherCode"].intValue
         self.weatherIcon = updateWeatherIcon(weatherCode: weatherCode)
         
     }
@@ -68,7 +68,7 @@ class ForecastWeatherData {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         if let formattedDate = dateFormatter.date(from: date) {
-            dateFormatter.dateFormat = "dd MMM, yyy"
+            dateFormatter.dateFormat = "dd MMM"
             return dateFormatter.string(from: formattedDate)
         }
         
