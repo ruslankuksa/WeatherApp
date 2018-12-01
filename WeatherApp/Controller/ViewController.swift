@@ -57,6 +57,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     // Get data from url
     //****************************************************************************//
     func getWeatherData(url: String, parameters: [String:String]) {
+        forecastArray.removeAll()
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             response in
             if response.result.isSuccess {
@@ -64,7 +65,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
                 let weatherJSON: JSON = JSON(response.result.value!)
                 
                 self.updateWeatherUI(weatherData: WeatherDataModel(json: weatherJSON))
-                self.getForecastWeatherData(json: weatherJSON["data"]["weather"])
+                
+
+                for item in weatherJSON["data"]["weather"].arrayValue {
+                        let forecast = ForecastWeatherData(data: item)
+                        self.forecastArray.append(forecast)
+                }
+                
+                self.collectionView.reloadData()
+                self.forecastArray.remove(at: 0)
             }
             else {
                 print(response.result.error!)
@@ -74,14 +83,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     }
     
     
-    func getForecastWeatherData(json: JSON) {
-        for _ in 1...3 {
-            for item in json["data"]["weather"] {
-                let forecast = ForecastWeatherData(data: item)
-                forecastArray.append(ForecastWeatherData(data: item))
-                
-            }
-        }
+    func getForecastWeatherData(forecastData: Dictionary<String, AnyObject>) {
+        
 
     }
     
