@@ -34,7 +34,7 @@ class WeatherDataModel {
     func updateWeatherIcon(weatherCode: Int) -> String {
         switch weatherCode {
         
-        case 113:return "039-sun"
+        case 113: return "039-sun"
             
         case 116: return "038-cloudy-3"
             

@@ -64,6 +64,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
                 let weatherJSON: JSON = JSON(response.result.value!)
                 
                 self.updateWeatherUI(weatherData: WeatherDataModel(json: weatherJSON))
+                self.getForecastWeatherData(json: weatherJSON["data"]["weather"])
             }
             else {
                 print(response.result.error!)
@@ -72,24 +73,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
         }
     }
     
-      /*Daily forecast API available only for subscribers of openweathermap.org*/
     
-//    func getForecastWeatherData(url: String, parameters: [String:String]) {
-//        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
-//            response in
-//            let result = response.result
-//            if let dictionary = result.value as? Dictionary<String, AnyObject> {
-//                if let list = dictionary["list"] as? [Dictionary<String, AnyObject>] {
-//                    for item in list[1...3] {
-//                        let forecast = ForecastWeatherData(weatherData: item)
-//                        self.forecastArray.append(forecast)
-//                    }
-//                    self.collectionView.reloadData()
-//                }
-//            }
-//        }
-//
-//    }
+    func getForecastWeatherData(json: JSON) {
+        for _ in 1...3 {
+            for item in json["data"]["weather"] {
+                let forecast = ForecastWeatherData(data: item)
+                forecastArray.append(ForecastWeatherData(data: item))
+                
+            }
+        }
+
+    }
     
     //Update UI
     //****************************************************************************//
@@ -111,10 +105,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
             let latitude = String(currentLocation.coordinate.latitude)
             let longitude = String(currentLocation.coordinate.longitude)
             
-            let weatherParams: [String:String] = ["key": API_KEY, "lat": latitude, "lon": longitude, "format": "json", "num_of_days": "3", "includelocation": "yes"]
+            let weatherParams: [String:String] = ["key": API_KEY, "lat": latitude, "lon": longitude, "format": "json", "num_of_days": "4", "includelocation": "yes"]
             getWeatherData(url: API_URL, parameters: weatherParams)
             
-            //let forecastParams: [String:String] = ["lat": latitude, "lon": longitude, "cnt": "\(3)", "appid": API_KEY]
             //getForecastWeatherData(url: FORECAST_URL, parameters: forecastParams)
         }
     }
