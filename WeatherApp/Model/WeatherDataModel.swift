@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 class WeatherDataModel {
-    var temparature: Int = 0
+    var temperature: Int = 0
     var weatherCode: Int = 0
     var weatherType: String = ""
     var city: String = ""
@@ -18,17 +18,22 @@ class WeatherDataModel {
     var weatherIcon: String = ""
     
     init(json: JSON) {
-        self.temparature = json["data"]["current_condition"][0]["temp_C"].intValue
-        self.city = json["data"]["nearest_area"][0]["areaName"][0]["value"].stringValue
-        self.date = dateConvertor(date: json["data"]["weather"][0]["date"].stringValue)
+        if let temp = json["data"]["current_condition"][0]["temp_C"].string {
+            self.temperature = Int(temp)!
+            self.city = json["data"]["nearest_area"][0]["areaName"][0]["value"].stringValue
+            self.date = dateConvertor(date: json["data"]["weather"][0]["date"].stringValue)
+            
+            self.weatherCode = json["data"]["current_condition"][0]["weatherCode"].intValue
+            print(weatherCode)
+            
+            self.weatherType = json["data"]["current_condition"][0]["weatherDesc"][0]["value"].stringValue
+            self.weatherIcon = updateWeatherIcon(weatherCode: weatherCode)
+        }
+        else {
+            self.city = "Location is unvailable"
+            self.weatherIcon = "014-compass"
+        }
         
-        self.weatherCode = json["data"]["current_condition"][0]["weatherCode"].intValue
-        print(weatherCode)
-        
-        self.weatherType = json["data"]["current_condition"][0]["weatherDesc"][0]["value"].stringValue
-        self.weatherIcon = updateWeatherIcon(weatherCode: weatherCode)
-        
-        //cityLabel.text = "Weather unvailable"
     }
     
     func updateWeatherIcon(weatherCode: Int) -> String {

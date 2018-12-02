@@ -79,7 +79,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     func updateWeatherUI(weatherData: WeatherDataModel) {
         cityLabel.text = weatherData.city
         dateLabel.text = weatherData.date
-        temperatureLabel.text = String(weatherData.temparature) + "°"
+        temperatureLabel.text = String(weatherData.temperature) + "°"
         weatherTypeLabel.text = weatherData.weatherType
         weatherImage.image = UIImage(named: weatherData.weatherIcon)
         
@@ -89,11 +89,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
         forecastArray.removeAll()
         for item in weatherJSON["data"]["weather"].arrayValue {
             let forecast = ForecastWeatherData(data: item)
-            self.forecastArray.append(forecast)
+            forecastArray.append(forecast)
         }
         
-        self.collectionView.reloadData()
-        self.forecastArray.remove(at: 0)
+        if !(forecastArray.isEmpty) {
+            forecastArray.remove(at: 0)
+        }
+        
+        collectionView.reloadData()
+        
+        
         
     }
     
@@ -162,6 +167,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "forecastCell", for: indexPath) as! CollectionViewCell
 
         cell.configureCell(forecastWeather: forecastArray[indexPath.row])
+        cell.sizeToFit()
 
         return cell
 
