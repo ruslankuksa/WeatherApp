@@ -6,3 +6,5 @@ don't have any sense(really sorry about that and for my grammatical errors :) ).
 
 This app using https://www.worldweatheronline.com API. 
 For run this app, create a Keys.plist in project folder and put you API key there.
+
+If you have any comments or questions, please feel free to email me at elder.dreamer@protonmail.com
