@@ -86,7 +86,6 @@
 				44F5AF4E2192FF1600A0263D /* LaunchScreen.storyboard */,
 				44F5AF512192FF1600A0263D /* Info.plist */,
 				44A6EBA321B3D211005DAE8F /* Keys.plist */,
-				44A6EBA621B3F226005DAE8F /* ApiKey.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -94,6 +93,7 @@
 		44F5AF572192FF3300A0263D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				44A6EBA621B3F226005DAE8F /* ApiKey.swift */,
 				44FA51962196BE2000E86857 /* WeatherDataModel.swift */,
 				44FB4EFE21A4AF5700E23C30 /* ForecastWeatherDataModel.swift */,
 			);
