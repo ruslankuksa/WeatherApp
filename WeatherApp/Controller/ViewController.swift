@@ -88,7 +88,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     func updateForecastUI(weatherJSON: JSON) {
         forecastArray.removeAll()
         for item in weatherJSON["data"]["weather"].arrayValue {
-            let forecast = ForecastWeatherData(data: item)
+            let forecast = ForecastWeatherData(json: item)
             forecastArray.append(forecast)
         }
         

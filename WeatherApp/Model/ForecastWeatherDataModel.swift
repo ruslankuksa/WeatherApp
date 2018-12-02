@@ -11,14 +11,13 @@ import SwiftyJSON
 
 class ForecastWeatherData: WeatherDataModel {
     
-    init(data: JSON) {
-        super.init(json: data)
-        date = dateConvertor(date: data["date"].stringValue)
-        temperature = data["hourly"][4]["tempC"].intValue
-        weatherType = data["hourly"][4]["weatherDesc"][0]["value"].stringValue
-        weatherCode = data["hourly"][4]["weatherCode"].intValue
+    override init(json: JSON) {
+        super.init(json: json)
+        date = dateConvertor(date: json["date"].stringValue)
+        temperature = json["hourly"][4]["tempC"].intValue
+        weatherType = json["hourly"][4]["weatherDesc"][0]["value"].stringValue
+        weatherCode = json["hourly"][4]["weatherCode"].intValue
         weatherIcon = updateWeatherIcon(weatherCode: weatherCode)
-        
     }
     
     
