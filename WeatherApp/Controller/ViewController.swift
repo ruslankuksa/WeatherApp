@@ -13,8 +13,8 @@ import Alamofire
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    let API_KEY: String = "780026e2fb6e47d4b28201449182611"
-    let API_URL: String = "https://api.worldweatheronline.com/premium/v1/weather.ashx"
+    private let API_KEY: String = APIKey(keyname: "API_KEY")
+    private let API_URL: String = "https://api.worldweatheronline.com/premium/v1/weather.ashx"
     
     let locationManager = CLLocationManager()
     

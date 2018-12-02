@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		42A9234BD09403CE9528EB44 /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6636FD266A12168A78B3A117 /* Pods_WeatherApp.framework */; };
 		44A6EBA421B3D211005DAE8F /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44A6EBA321B3D211005DAE8F /* Keys.plist */; };
+		44A6EBA721B3F226005DAE8F /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6EBA621B3F226005DAE8F /* ApiKey.swift */; };
 		44F5AF462192FF1500A0263D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F5AF452192FF1500A0263D /* AppDelegate.swift */; };
 		44F5AF482192FF1500A0263D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F5AF472192FF1500A0263D /* ViewController.swift */; };
 		44F5AF4B2192FF1500A0263D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F5AF492192FF1500A0263D /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		44A6EBA321B3D211005DAE8F /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		44A6EBA621B3F226005DAE8F /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		44F5AF422192FF1500A0263D /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F5AF452192FF1500A0263D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44F5AF472192FF1500A0263D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				44F5AF4E2192FF1600A0263D /* LaunchScreen.storyboard */,
 				44F5AF512192FF1600A0263D /* Info.plist */,
 				44A6EBA321B3D211005DAE8F /* Keys.plist */,
+				44A6EBA621B3F226005DAE8F /* ApiKey.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				44F5AF462192FF1500A0263D /* AppDelegate.swift in Sources */,
 				44FB4EFD21A4773A00E23C30 /* CollectionViewCell.swift in Sources */,
 				44FB4EFF21A4AF5700E23C30 /* ForecastWeatherDataModel.swift in Sources */,
+				44A6EBA721B3F226005DAE8F /* ApiKey.swift in Sources */,
 				44FA51972196BE2000E86857 /* WeatherDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
