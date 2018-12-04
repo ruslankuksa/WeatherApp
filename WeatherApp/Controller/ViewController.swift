@@ -45,7 +45,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.startUpdatingLocation()
         
         // If user tapped outside the search bar, hide it

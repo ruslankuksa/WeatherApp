@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="After Noon" translatesAutoresizingMaskIntoConstraints="NO" id="Wzf-Wd-UTO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="francesco-gallarotti-2497" translatesAutoresizingMaskIntoConstraints="NO" id="Wzf-Wd-UTO">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday 17 Nov" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXv-Tw-RQe">
@@ -35,18 +35,18 @@
                                 <rect key="frame" x="87" y="204" width="240" height="128"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="004-rainy-1" translatesAutoresizingMaskIntoConstraints="NO" id="6n3-eD-Mp8">
-                                        <rect key="frame" x="22" y="0.0" width="100" height="100"/>
+                                        <rect key="frame" x="22" y="0.0" width="90" height="90"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="FsZ-IM-Ggq"/>
-                                            <constraint firstAttribute="height" constant="100" id="vlB-AH-wPc"/>
+                                            <constraint firstAttribute="width" constant="90" id="FsZ-IM-Ggq"/>
+                                            <constraint firstAttribute="height" constant="90" id="vlB-AH-wPc"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Og1-hb-vNY">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-27°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Og1-hb-vNY">
                                         <rect key="frame" x="132" y="0.0" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="n1q-rY-Rzx"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="70"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="55"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -54,7 +54,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Og1-hb-vNY" firstAttribute="top" secondItem="xVf-ev-OEW" secondAttribute="top" id="2k3-0y-Phh"/>
-                                    <constraint firstItem="Og1-hb-vNY" firstAttribute="leading" secondItem="6n3-eD-Mp8" secondAttribute="trailing" constant="10" id="7tP-76-Yeg"/>
+                                    <constraint firstItem="Og1-hb-vNY" firstAttribute="leading" secondItem="6n3-eD-Mp8" secondAttribute="trailing" constant="20" id="7tP-76-Yeg"/>
                                     <constraint firstAttribute="height" constant="128" id="Kzk-pW-7Qm"/>
                                     <constraint firstItem="6n3-eD-Mp8" firstAttribute="top" secondItem="xVf-ev-OEW" secondAttribute="top" id="P06-HG-CGr"/>
                                     <constraint firstAttribute="trailing" secondItem="Og1-hb-vNY" secondAttribute="trailing" constant="8" id="eQh-pT-DN2"/>
@@ -71,12 +71,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" placeholder="Enter your city" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kb1-jL-XUO">
+                            <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Enter your city" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kb1-jL-XUO">
                                 <rect key="frame" x="0.0" y="44" width="414" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="FSr-dn-THW"/>
                                 </constraints>
-                                <color key="barTintColor" red="0.98456511886164377" green="0.78106691088219193" blue="0.4257544948630137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits" textContentType="address-level1+2"/>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="926-fM-vYS">
@@ -231,6 +231,6 @@
     <resources>
         <image name="004-rainy-1" width="170.5" height="170.5"/>
         <image name="009-storm-1" width="170.5" height="170.5"/>
-        <image name="After Noon" width="375" height="667"/>
+        <image name="francesco-gallarotti-2497" width="5472" height="3648"/>
     </resources>
 </document>
