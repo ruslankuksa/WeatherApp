@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="francesco-gallarotti-2497" translatesAutoresizingMaskIntoConstraints="NO" id="Wzf-Wd-UTO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgorund_1" translatesAutoresizingMaskIntoConstraints="NO" id="Wzf-Wd-UTO">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday 17 Nov" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXv-Tw-RQe">
@@ -231,6 +231,6 @@
     <resources>
         <image name="004-rainy-1" width="170.5" height="170.5"/>
         <image name="009-storm-1" width="170.5" height="170.5"/>
-        <image name="francesco-gallarotti-2497" width="5472" height="3648"/>
+        <image name="backgorund_1" width="1485" height="2784"/>
     </resources>
 </document>
