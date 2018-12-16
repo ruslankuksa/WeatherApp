@@ -18,7 +18,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     
     let locationManager = CLLocationManager()
     
-    var forecastArray = [ForecastWeatherData]()
+    var forecastArray = [ForecastWeatherDataModel]()
     
 
     @IBOutlet weak var cityLabel: UILabel!
@@ -26,6 +26,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherTypeLabel: UILabel!
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -88,7 +89,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     func updateForecastUI(weatherJSON: JSON) {
         forecastArray.removeAll()
         for item in weatherJSON["data"]["weather"].arrayValue {
-            let forecast = ForecastWeatherData(json: item)
+            let forecast = ForecastWeatherDataModel(json: item)
             forecastArray.append(forecast)
         }
         
@@ -123,8 +124,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
         print(error)
     }
     
-
-
+    
+    @IBAction func searchButtonPressed(_ sender: Any) {
+        searchBar.keyboardType = .alphabet
+        searchButton.isHidden = true
+        searchBar.isHidden = false
+        
+    }
+    
     // SearchBar settings
     //*****************************************************************//
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -132,18 +139,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
             let newParameters: [String:String] = ["key": API_KEY, "q": searchBar.text!, "format": "json", "num_of_days": "4", "includelocation": "yes"]
             getWeatherData(url: API_URL, parameters: newParameters)
         }
-        searchBar.endEditing(true)
-        searchBar.isHidden = true
-        searchBar.text = ""
-        searchButton.isHidden = false
-        
-    }
-
-    @IBAction func searchButtonPressed(_ sender: Any) {
-        searchBar.keyboardType = .alphabet
-        searchButton.isHidden = true
-        searchBar.isHidden = false
-        
+        tappedOutsideSearchBar()
     }
     
     @objc func tappedOutsideSearchBar() {
@@ -157,8 +153,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDe
     }
     
     
-    // CollectionVIew settings for showing daily forecast
-    
+    // CollectionView settings for showing daily forecast
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return forecastArray.count
     }

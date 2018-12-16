@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class ForecastWeatherData: WeatherDataModel {
+class ForecastWeatherDataModel: WeatherDataModel {
     
     override init(json: JSON) {
         super.init(json: json)
